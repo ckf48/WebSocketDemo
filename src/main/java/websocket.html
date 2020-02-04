@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        let socket;
+        if (typeof (WebSocket) == "undefined") {
+            console.log("sb");
+        } else {
+            console.log("fb");
+            socket = new WebSocket("ws://localhost:8081/websocket/1");
+            socket.onopen = function () {
+                console.log("open");
+                socket.send("from client " + location.href + new Date());
+            };
+
+            socket.onmessage = function (msg) {
+                console.log(msg.data);
+            }
+        }
+    </script>
+</head>
+</html>
